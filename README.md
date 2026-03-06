@@ -1,0 +1,1 @@
+##A RAG-powered PDF Question Answering system that ingests any PDF document, splits it into semantic chunks, and builds a hybrid retrieval engine using FAISS vector search and Whoosh keyword indexing for accurate context retrieval.
