@@ -4,6 +4,16 @@ import time
 import asyncio
 import tempfile
 
+import streamlit as st
+from dotenv import load_dotenv
+load_dotenv() 
+
+if "GOOGLE_API_KEY" in st.secrets:
+    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+else:
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY  
+
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from pydantic import fields
@@ -17,10 +27,8 @@ try:
 except RuntimeError:
     asyncio.set_event_loop(asyncio.new_event_loop())
 
-from dotenv import load_dotenv
-load_dotenv()  # load from .env file locally
 
-import streamlit as st
+
 # from google import genai
 # from google.genai import types
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -40,8 +48,7 @@ try:
 except RuntimeError:
     asyncio.set_event_loop(asyncio.new_event_loop())
 
-from dotenv import load_dotenv
-load_dotenv()  # load from .env file locally
+
 
 
 # from google import genai
@@ -56,10 +63,7 @@ except RuntimeError:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-if "GOOGLE_API_KEY" in st.secrets:
-    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
-else:
-    os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY", "")
+
 #  Streamlit Title
 st.title("Ask me what you want ?")
 
