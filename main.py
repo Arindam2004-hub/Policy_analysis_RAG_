@@ -56,10 +56,10 @@ except RuntimeError:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-
-GOOGLE_API_KEY= os.environ.get("GOOGLE_API_KEY")
-
-
+if "GOOGLE_API_KEY" in st.secrets:
+    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+else:
+    os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY", "")
 #  Streamlit Title
 st.title("Ask me what you want ?")
 
